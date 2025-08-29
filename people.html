@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>People - TikTok PET ARENA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=TikTok+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    
+    <header>
+        <nav class="container">
+            <a href="index.html" class="nav-brand">PET ARENA</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="leaderboard.html" class="active">Leaderboard</a></li>
+                <li><a href="people.html">People</a></li>
+                <li><a href="rules.html">Rules & Regs</a></li>
+            </ul>
+            <button class="hamburger">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </button>
+        </nav>
+    </header>
+
+    <main>
+        <section class="container hero">
+            <h1>People</h1>
+            <p class="subtitle" style="font-size: 1.5rem; color: #ffffff;">Coming soon!</p>
+        </section>
+    </main>
+
+  <!-- Layer 1: The Initial Banner -->
+<div id="consent-banner">
+    <div class="container">
+        <div class="consent-banner-content">
+            <h3>We Value Your Privacy</h3>
+            <p>We use cookies to improve your experience. With your consent, we will also use analytics cookies to understand how our site is used. For more details, see our <a href="cookie-policy.html">Cookie Policy</a>.</p>
+        </div>
+        <div class="consent-banner-buttons">
+            <!-- Corrected button classes for your theme -->
+            <button id="manage-settings-btn" class="button-secondary">Manage Settings</button>
+            <button id="accept-all-btn" class="button-primary">Accept All</button>
+        </div>
+    </div>
+</div>
+<!-- Layer 2: The Detailed Settings Modal -->
+<div id="settings-modal-overlay">
+    <div id="settings-modal">
+        <div class="modal-header">
+            <h2>Your Privacy Choices</h2>
+            <button id="close-modal-btn">&times;</button>
+        </div>
+        <div class="modal-body">
+            <p>You can control your preferences for analytics cookies. We use this data to improve our service. You can withdraw your consent at any time.</p>
+            <!-- Strictly Necessary Cookies -->
+            <div class="setting-category">
+                <div class="category-header">
+                    <h4>Strictly Necessary</h4>
+                    <label class="toggle-switch">
+                        <input type="checkbox" checked disabled>
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+                <p class="category-description">These are essential for the website to function and cannot be switched off.</p>
+            </div>
+            <!-- Analytics Cookies -->
+            <div class="setting-category">
+                <div class="category-header">
+                    <h4>Analytics</h4>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="consent-analytics" data-purpose="analytics">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+                <p class="category-description">These allow us to measure and improve the performance of our site by collecting and reporting information on how you use it.</p>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <!-- Corrected button classes for your theme -->
+            <button id="save-settings-btn" class="button-primary">Save My Choices</button>
+        </div>
+    </div>
+</div>
+<!-- Geoblocking Message -->
+<div id="geoblock-message">
+    <h1>Access Restricted</h1>
+    <p>We're sorry, but this content is not available in your region.</p>
+</div>
+
+ <div id="revoke-consent-icon" title="Manage Cookie Preferences">🍪</div> 
+
+<footer>
+    <div class="container">
+        <a href="https://privacyinnovation.io/" target="_blank">
+            <img src="https://privacyinnovation.io/img/logo.png" alt="TikTok Privacy Innovation Logo" class="footer-logo">
+        </a>
+        <div class="footer-links">
+            <a href="https://github.com/tiktok-privacy-innovation" target="_blank">GitHub</a>
+            <a href="https://twitter.com/TikTokForDevs" target="_blank">Twitter</a>
+            <a href="https://bsky.app/profile/tt4d.bsky.social" target="_blank">Bluesky</a>
+            <a href="https://developers.tiktok.com/open_innovation" target="_blank">TikTok For Developers</a>
+        </div>
+    
+        <p>
+            A <a href="https://privacyinnovation.io/" target="_blank">TikTok Privacy Innovation</a> initiative. | 
+            <a href="https://www.tiktok.com/legal/page/eea/privacy-policy/en" target="_blank">Privacy Policy</a> | 
+            <a href="https://www.tiktok.com/legal/page/global/tiktok-website-cookies-policy/en">Cookie Policy</a>
+        </p>
+        
+        <p>Made with love using <a href="https://github.com/tiktok/TikTokSans" target="_blank">TikTok Sans</a>.</p>
+        <p class="byline">2025 v.1.0.1</p>
+    </div>
+</footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/effects.js"></script>
+    <script src="js/consent.js"></script>
+</body>
+</html>

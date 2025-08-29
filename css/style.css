@@ -1,0 +1,529 @@
+/* --- BRAND COLORS & THEME --- */
+:root {
+    --tiktok-red: #FE2C55;
+    --tiktok-blue: #25F4EE;
+    --background-color: #010101;
+    --text-color: #e9e9e9;
+    --border-color: #2a2a2a;
+    --header-bg: rgba(1, 1, 1, 0.85);
+    --scroll-y: 0;
+}
+
+body {
+    font-family: 'TikTok Sans', sans-serif;
+    margin: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.7;
+    font-size: 18px;
+}
+
+/* --- NEW, UNIFIED BACKGROUND CONTAINER --- */
+.background-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; 
+    pointer-events: none;
+    overflow: hidden;
+}
+
+
+.background-container::before {
+    content: '';
+    position: absolute;
+    top: -800px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1800px;
+    height: 1800px;
+    background: radial-gradient(circle, rgba(37, 244, 238, 0.15) 0%, rgba(1, 1, 1, 0) 50%);
+}
+
+.background-container::after {
+    content: '';
+    position: absolute;
+    bottom: -900px;
+    left: 50%;
+    transform: translate(-50%, calc(var(--scroll-y) * -0.6px));
+    width: 1600px;
+    height: 1600px;
+    background: radial-gradient(circle, rgba(254, 44, 85, 0.2) 0%, rgba(1, 1, 1, 0) 50%);
+    transition: transform 0.1s linear;
+}
+
+#reveal-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .background-container { display: none; }
+}
+
+/* --- LAYOUT & TYPOGRAPHY --- */
+h1, h2, h3, h4 { font-weight: 700; color: #ffffff; }
+h1 { font-size: 3.2rem; }
+h2 { font-size: 2.2rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.75rem; margin-top: 3rem; }
+a { color: var(--tiktok-blue); text-decoration: none; transition: color 0.2s ease; }
+a:hover { color: #ffffff; }
+.container { max-width: 900px; margin: 0 auto; padding: 0 20px; }
+
+/* --- HEADER --- */
+header { padding: 20px 0; border-bottom: 1px solid var(--border-color); position: sticky; top: 0; z-index: 100; background-color: var(--header-bg); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); }
+nav { display: flex; justify-content: space-between; align-items: center; }
+.nav-brand { font-weight: 700; font-size: 1.5rem; color: #ffffff; }
+nav .nav-links { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 30px; }
+nav .nav-links a { color: var(--text-color); font-size: 1.1rem; padding-bottom: 5px; border-bottom: 2px solid transparent; transition: all 0.2s ease; }
+nav .nav-links a.active, nav .nav-links a:hover { color: #ffffff; border-bottom-color: var(--tiktok-blue); }
+
+/* --- BUTTONS --- */
+.button-primary { display: inline-block; background-color: var(--tiktok-blue); color: #010101; padding: 15px 30px; border-radius: 8px; font-weight: 700; font-size: 1.1rem; transition: all 0.2s ease; }
+.button-primary:hover { background-color: var(--tiktok-red); color: #ffffff; transform: scale(1.05); }
+
+/* --- RESPONSIVE & MISC --- */
+.hamburger { display: none; flex-direction: column; justify-content: space-around; width: 2rem; height: 2rem; background: transparent; border: none; cursor: pointer; padding: 0; z-index: 10; }
+.hamburger .bar { width: 2rem; height: 0.25rem; background-color: var(--text-color); border-radius: 10px; transition: all 0.3s linear; position: relative; transform-origin: 1px; }
+main { padding: 40px 0; }
+.hero { text-align: center; padding: 80px 0; }
+.hero .subtitle { font-size: 1.25rem; color: #a0a0a0; max-width: 700px; margin: 1rem auto 2rem auto; }
+
+/* --- FOOTER --- */
+footer {
+    border-top: 1px solid var(--border-color);
+    padding: 40px 0;
+    margin-top: 40px;
+    color: #888;
+    text-align: center;
+    background-color: var(--background-color);
+}
+
+footer .footer-logo {
+    height: 77px !important;
+    width: auto; /* Calculate width based on the fixed height */
+    max-width: 100%; /* Prevents the image from ever breaking its container */
+    margin-bottom: 20px;
+    opacity: 0.8;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* Allows links to wrap on smaller screens */
+    gap: 15px 25px;
+    margin-bottom: 20px;
+}
+.footer-links a {
+    color: #aaa;
+    font-weight: bold;
+}
+.footer-links a:hover {
+    color: var(--tiktok-blue);
+}
+footer p {
+    font-size: 0.9rem;
+    margin: 0;
+}
+footer .byline {
+    font-size: 0.8rem;
+    color: #666;
+    margin-top: 20px;
+}
+
+/* --- RESPONSIVE SECTION --- */
+@media (max-width: 768px) {
+    h1 { font-size: 2.5rem; }
+    h2 { font-size: 1.8rem; }
+    .nav-links {
+        position: fixed;
+        right: -100%;
+        top: 0;
+        height: 100vh;
+        width: 70%;
+        background-color: #1c1c1c;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 40px;
+        transition: right 0.4s ease-in-out;
+        z-index: 5;
+    }
+    .nav-links.active {
+        right: 0;
+    }
+    .hamburger {
+        display: flex;
+    }
+}
+
+/* --- COOKIE CONSENT BANNER --- */
+#cookie-consent-banner {
+    display: none; /* Hidden by default, JS will show it */
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #1c1c1c;
+    border-top: 1px solid var(--border-color);
+    padding: 20px;
+    z-index: 1000; /* Ensures it's on top of everything */
+    /* Flexbox for alignment */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+#cookie-consent-banner p {
+    margin: 0;
+    color: var(--text-color);
+    font-size: 0.9rem;
+    flex-grow: 1; /* Allows text to take available space */
+}
+#cookie-consent-banner .cookie-buttons {
+    display: flex;
+    gap: 15px;
+    flex-shrink: 0; /* Prevents buttons from shrinking */
+}
+#cookie-consent-banner button {
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+/* Style for the secondary 'Decline' button */
+#cookie-consent-banner #decline-cookies {
+    background-color: #444;
+    color: #fff;
+}
+#cookie-consent-banner #decline-cookies:hover {
+    background-color: #555;
+}
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+    #cookie-consent-banner {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+/* Layer 1: The Main Banner */
+#consent-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(20, 20, 20, 0.95);
+    backdrop-filter: blur(10px);
+    color: #fff;
+    padding: 20px 0;
+    z-index: 1000;
+    border-top: 1px solid #444;
+    display: none; /* Hidden by default */
+}
+#consent-banner .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+#consent-banner h3 {
+    margin-top: 0;
+    font-size: 1.2rem;
+}
+#consent-banner p {
+    margin: 5px 0 0;
+    font-size: 0.9rem;
+    max-width: 600px;
+}
+#consent-banner a {
+    color: #00f2ea;
+    text-decoration: underline;
+}
+.consent-banner-buttons {
+    display: flex;
+    gap: 15px;
+    flex-shrink: 0;
+}
+/* Layer 2: The Settings Modal */
+#settings-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 1001;
+    display: none; /* Hidden by default */
+    justify-content: center;
+    align-items: center;
+}
+#settings-modal {
+    background-color: #1c1c1e;
+    color: #fff;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 700px;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+.modal-header {
+    padding: 20px 25px;
+    border-bottom: 1px solid #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.modal-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+#close-modal-btn {
+    background: none;
+    border: none;
+    color: #aaa;
+    font-size: 2rem;
+    cursor: pointer;
+    line-height: 1;
+}
+.modal-body {
+    padding: 25px;
+    overflow-y: auto;
+}
+.modal-body > p {
+    margin-top: 0;
+    color: #ccc;
+}
+.setting-category {
+    border: 1px solid #333;
+    border-radius: 8px;
+    margin-top: 20px;
+    padding: 15px;
+}
+.category-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.category-header h4 {
+    margin: 0;
+    font-size: 1.1rem;
+}
+.category-description {
+    font-size: 0.9rem;
+    color: #bbb;
+    margin: 10px 0;
+}
+.vendor-list {
+    border-top: 1px solid #333;
+    margin-top: 15px;
+    padding-top: 15px;
+}
+.vendor-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 0;
+}
+.modal-footer {
+    padding: 20px 25px;
+    border-top: 1px solid #333;
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+}
+/* Toggle Switch Styles */
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 28px;
+}
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #555;
+    transition: .4s;
+}
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+}
+input:checked + .slider {
+    background-color: #00f2ea;
+}
+input:checked + .slider:before {
+    transform: translateX(22px);
+}
+.slider.round {
+    border-radius: 34px;
+}
+.slider.round:before {
+    border-radius: 50%;
+}
+input:disabled + .slider {
+    cursor: not-allowed;
+    background-color: #333;
+}
+input:disabled:checked + .slider {
+    background-color: #007a75;
+}
+/* Consent Revocation Icon */
+#revoke-consent-icon {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    width: 50px;
+    height: 50px;
+    background-color: #333;
+    color: #fff;
+    border-radius: 50%;
+    display: none; /* Hidden by default */
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 999;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    #consent-banner .container {
+        flex-direction: column;
+        text-align: center;
+    }
+    .consent-banner-buttons {
+        margin-top: 15px;
+    }
+}
+
+/* --- Geoblocking Styles --- */
+#geoblock-message {
+    display: none; text-align: center; padding: 50px;
+}
+body.geoblocked #geoblock-message { display: block; }
+body.geoblocked header,
+body.geoblocked main,
+body.geoblocked footer,
+body.geoblocked #consent-banner {
+    display: none;
+}
+/* --- Cookie Banner Styles --- */
+#consent-banner {
+    position: fixed; bottom: 0; left: 0; right: 0;
+    background-color: rgba(20, 20, 20, 0.95);
+    backdrop-filter: blur(10px);
+    color: #fff; padding: 20px 0; z-index: 1000;
+    border-top: 1px solid #444; display: none;
+}
+#consent-banner .container {
+    display: flex; justify-content: space-between; align-items: center; gap: 20px;
+}
+#consent-banner h3 { margin-top: 0; font-size: 1.2rem; }
+#consent-banner p { margin: 5px 0 0; font-size: 0.9rem; max-width: 600px; }
+#consent-banner a { color: #00f2ea; text-decoration: underline; }
+.consent-banner-buttons { display: flex; gap: 15px; flex-shrink: 0; }
+/* --- Settings Modal Styles --- */
+#settings-modal-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); z-index: 1001;
+    display: none; justify-content: center; align-items: center;
+}
+#settings-modal {
+    background-color: #1c1c1e; color: #fff; border-radius: 12px;
+    width: 90%; max-width: 600px; display: flex; flex-direction: column;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+.modal-header {
+    padding: 20px 25px; border-bottom: 1px solid #333;
+    display: flex; justify-content: space-between; align-items: center;
+}
+.modal-header h2 { margin: 0; font-size: 1.5rem; }
+#close-modal-btn { background: none; border: none; color: #aaa; font-size: 2rem; cursor: pointer; }
+.modal-body { padding: 25px; overflow-y: auto; }
+.setting-category { border: 1px solid #333; border-radius: 8px; margin-top: 20px; padding: 15px; }
+.category-header { display: flex; justify-content: space-between; align-items: center; }
+.category-header h4 { margin: 0; font-size: 1.1rem; }
+.category-description { font-size: 0.9rem; color: #bbb; margin: 10px 0; }
+.modal-footer {
+    padding: 20px 25px; border-top: 1px solid #333;
+    display: flex; justify-content: flex-end; gap: 15px;
+}
+/* --- Toggle Switch Styles --- */
+.toggle-switch { position: relative; display: inline-block; width: 50px; height: 28px; }
+.toggle-switch input { opacity: 0; width: 0; height: 0; }
+.slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #555; transition: .4s; }
+.slider:before { position: absolute; content: ""; height: 20px; width: 20px; left: 4px; bottom: 4px; background-color: white; transition: .4s; }
+input:checked + .slider { background-color: #00f2ea; }
+input:checked + .slider:before { transform: translateX(22px); }
+.slider.round { border-radius: 34px; }
+.slider.round:before { border-radius: 50%; }
+input:disabled + .slider { cursor: not-allowed; background-color: #333; }
+input:disabled:checked + .slider { background-color: #007a75; }
+/* --- Responsive Styles --- */
+@media (max-width: 768px) {
+    #consent-banner .container { flex-direction: column; text-align: center; }
+    .consent-banner-buttons { margin-top: 15px; }
+}
+
+.button-secondary {
+    background-color: transparent;
+    border: 2px solid #fff;
+    color: #fff;
+    padding: 10px 20px;
+    font-family: 'TikTok Sans', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+.button-secondary:hover {
+    background-color: #fff;
+    color: #121212;
+}
+
+#revoke-consent-icon {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    width: 50px;
+    height: 50px;
+    background-color: #333;
+    color: #fff;
+    border-radius: 50%;
+    display: none; /* Hidden by default, JS will show it */
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 999;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    transition: transform 0.2s ease;
+}
+#revoke-consent-icon:hover {
+    transform: scale(1.1);
+}
